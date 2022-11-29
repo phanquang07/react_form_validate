@@ -28,7 +28,7 @@ class MSForm extends Component {
 
     // Đẩy value và errors từ form lên redux
     let action = {
-      type: "HANDLECHANGE",
+      type: "HANDLE_CHANGE",
       student: {
         values: newValues,
         errors: newErrors
@@ -68,22 +68,21 @@ class MSForm extends Component {
     //B2: đẩy data lên redux
     let action = {
       type: 'ADD_STUDENT',
-      student: newValues
+      addStudent: newValues
     }
     this.props.dispatch(action)
   }
-
-
+  
   render() {
-    console.log('value student: ', this.props.student.values);
-    let { studentId, fName, phone, email } = this.props.student.values
+    // console.log('value student: ', this.props.student.values);
+    // let { studentId, fName, phone, email } = this.props.student.values
     return (
       <form action="" id='email' className='mt-4 row row-cols-2' onSubmit={(e) => {
         this.handleSubmit(e)
       }}>
         <div className="mb-3">
           <label htmlFor='studentId' className="form-label">Mã SV</label>
-          <input type="text" className="form-control" id='studentId' name='studentId' aria-describedby="helpId" placeholder="Nhập mã SV" value={studentId}
+          <input type="text" className="form-control" id='studentId' name='studentId' aria-describedby="helpId" placeholder="Nhập mã SV" value={this.props.student.values.studentId}
             onChange={(e) => {
               this.handleInputChange(e)
             }}
@@ -92,7 +91,7 @@ class MSForm extends Component {
         </div >
         <div className="mb-3">
           <label htmlFor='fName' className="form-label">Họ tên</label>
-          <input type="text" className="form-control" id='fName' name='fName' aria-describedby="helpId" placeholder="Nhập họ tên" value={fName}
+          <input type="text" className="form-control" id='fName' name='fName' aria-describedby="helpId" placeholder="Nhập họ tên" value={this.props.student.values.fName}
             onChange={(e) => {
               this.handleInputChange(e)
             }}
@@ -101,7 +100,7 @@ class MSForm extends Component {
         </div>
         <div className="mb-3">
           <label htmlFor='phone' className="form-label">SĐT</label>
-          <input type="text" className="form-control" id='phone' name='phone' aria-describedby="helpId" placeholder="Nhập sđt" value={phone}
+          <input type="text" className="form-control" id='phone' name='phone' aria-describedby="helpId" placeholder="Nhập sđt" value={this.props.student.values.phone}
             onChange={(e) => {
               this.handleInputChange(e)
             }}
@@ -110,7 +109,7 @@ class MSForm extends Component {
         </div>
         <div className="mb-3">
           <label htmlFor='email' className="form-label">Email</label>
-          <input type="text" typeinput="svEmail" className="form-control" id='email' name='email' aria-describedby="helpId" placeholder="Nhập email" value={email}
+          <input type="text" typeinput="svEmail" className="form-control" id='email' name='email' aria-describedby="helpId" placeholder="Nhập email" value={this.props.student.values.email}
             onChange={(e) => {
               this.handleInputChange(e)
             }}
@@ -119,6 +118,13 @@ class MSForm extends Component {
         </div>
         <div className="mb-3">
           <button className="btn btn-success">Thêm SV</button>
+          <button className="btn btn-warning mx-1" onClick={(student) => {
+            let action = {
+              type: 'UPDATE_STUDENT',
+              updateStudent: this.props.student.values
+            }
+            this.props.dispatch(action)
+          }}>Cập nhật</button>
         </div>
       </form >
     )

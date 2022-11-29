@@ -11,11 +11,13 @@ class StudentList extends Component {
         <td>{student.phone}</td>
         <td>{student.email}</td>
         <td>
-          <button className="btn btn-warning" onClick={() => {
+          <button className="btn btn-info" onClick={() => {
             let action = {
-              type: 'EDIT_STUDENT',
+              type: 'DETAIL_STUDENT',
+              detailStudent: student
             }
-          }}>Sửa</button>
+            this.props.dispatch(action)
+          }}>Chi tiết</button>
           <button className="btn btn-danger mx-1" onClick={() => {
             let action = {
               type: 'DELETE_STUDENT',
