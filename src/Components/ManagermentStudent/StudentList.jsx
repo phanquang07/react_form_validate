@@ -5,11 +5,25 @@ class StudentList extends Component {
 
   renderArrStudent = () => {
     return this.props.arrStudent.map((student) => {
-      return <tr key={student.svId}>
-        <td scope="row">{student.svId}</td>
+      return <tr key={student.studentId}>
+        <td scope="row">{student.studentId}</td>
         <td>{student.fName}</td>
         <td>{student.phone}</td>
         <td>{student.email}</td>
+        <td>
+          <button className="btn btn-warning" onClick={() => {
+            let action = {
+              type: 'EDIT_STUDENT',
+            }
+          }}>Sửa</button>
+          <button className="btn btn-danger mx-1" onClick={() => {
+            let action = {
+              type: 'DELETE_STUDENT',
+              deleteStudent: student.studentId
+            }
+            this.props.dispatch(action)
+          }}>Xóa</button>
+        </td>
       </tr>
     })
   }
@@ -25,6 +39,7 @@ class StudentList extends Component {
               <th scope="col">Họ tên</th>
               <th scope="col">Số điện thoại</th>
               <th scope="col">Email</th>
+              <th scope='col'>Hành động</th>
             </tr>
           </thead>
           <tbody>

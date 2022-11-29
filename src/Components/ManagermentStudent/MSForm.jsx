@@ -28,7 +28,7 @@ class MSForm extends Component {
 
     // Đẩy value và errors từ form lên redux
     let action = {
-      type: "HANDLE_CHANGE",
+      type: "HANDLECHANGE",
       student: {
         values: newValues,
         errors: newErrors
@@ -61,7 +61,7 @@ class MSForm extends Component {
       }
     }
     if (!isValid) {
-      alert('Dữ liệu không hợp lệ !')
+      alert('Dữ liệu không hợp lệ, mời bạn nhập lại')
       return
     }
 
@@ -76,19 +76,19 @@ class MSForm extends Component {
 
   render() {
     console.log('value student: ', this.props.student.values);
-    let { svId, fName, phone, email } = this.props.student.values
+    let { studentId, fName, phone, email } = this.props.student.values
     return (
       <form action="" id='email' className='mt-4 row row-cols-2' onSubmit={(e) => {
         this.handleSubmit(e)
       }}>
         <div className="mb-3">
-          <label htmlFor='svId' className="form-label">Mã SV</label>
-          <input type="text" className="form-control" id='svId' name='svId' aria-describedby="helpId" placeholder="Nhập mã SV" value={svId}
+          <label htmlFor='studentId' className="form-label">Mã SV</label>
+          <input type="text" className="form-control" id='studentId' name='studentId' aria-describedby="helpId" placeholder="Nhập mã SV" value={studentId}
             onChange={(e) => {
               this.handleInputChange(e)
             }}
             onBlur={(e) => { this.handleInputChange(e) }} />
-          <p className="text-danger">{this.props.student.errors.svId}</p>
+          <p className="text-danger">{this.props.student.errors.studentId}</p>
         </div >
         <div className="mb-3">
           <label htmlFor='fName' className="form-label">Họ tên</label>
