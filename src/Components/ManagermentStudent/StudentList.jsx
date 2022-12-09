@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class StudentList extends Component {
+  // detailStudent = () => {
+  //   document.getElementById("btn-update-student").style.display =
+  //     "inline-block";
+  //   document.getElementById("btn-add-student").style.display = "none";
+  //   document.getElementById("sId").disabled = true;
+
+  //   this.props.arrStudent.map((student) => {
+  //     let action = {
+  //       type: "DETAIL_STUDENT",
+  //       detailStudent: student,
+  //     };
+  //     this.props.dispatch(action);
+  //   });
+  // };
+  
   renderArrStudent = () => {
     let arrNewSV = this.props.arrSearch.length
       ? this.props.arrSearch
@@ -18,11 +33,18 @@ class StudentList extends Component {
             <button
               className="btn btn-info"
               onClick={() => {
+                document.getElementById("btn-update-student").style.display =
+                  "inline-block";
+                document.getElementById("btn-add-student").style.display =
+                  "none";
+                document.getElementById("sId").disabled = true;
+
                 let action = {
                   type: "DETAIL_STUDENT",
                   detailStudent: student,
                 };
                 this.props.dispatch(action);
+                // this.detailStudent();
               }}
             >
               Chi tiết
@@ -49,7 +71,7 @@ class StudentList extends Component {
     return (
       <>
         <form
-          className="mt-5 mb-3 d-flex justify-content-end"
+          className="mt-1 mb-3 d-flex justify-content-end"
           onChange={(e) => {
             e.preventDefault();
             let action = {
